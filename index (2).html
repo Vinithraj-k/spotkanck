@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>E commerce</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<style>
+	#Cart{
+    border:1px solid;
+    position:absolute;
+    right:5px;
+    top:10%;
+    width:30%;
+    height:80%;
+    border-radius: 10px;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width:80%;
+  position:absolute;    
+  bottom: 10px;
+  left:10%;
+}
+#price{
+    position:   absolute; 
+    bottom:   13%;
+    left:   50%;
+
+}
+#text{
+        position: relative  ;   
+        left:10%;
+        font-family:    Arial;
+}
+#CartItems{
+  height:50%;
+  width:90%;
+  position:   absolute; 
+  left:6%;
+  overflow: scroll;
+}
+#ItemContainer{
+  height:70%;
+  width:50%;
+  position: absolute  ; 
+  right:32%;
+  bottom:10%;
+  border:1px solid; 
+}
+.info {
+      position:   relative; 
+    left:5%;
+    top:5%;
+    max-width:90%;
+    padding:10;
+
+
+}
+
+.info .image{
+    background-image: fixed;
+
+}
+.info .text{
+  top:20%;
+  left:30%;   
+
+}
+</style>
+
+</head>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var itemvalue = document.getElementById(data).getAttribute('value'); 
+  var a = parseInt(itemvalue)  
+  var total = document.getElementById("price").getAttribute('value');
+  var b = parseInt(total)
+  a=a+b;
+  document.getElementById("price").setAttribute("value",a);  
+  var tagDiv=document.getElementById("price");
+  tagDiv.innerText ="Rs:"+a;
+                  
+  ev.target.appendChild(document.getElementById(data));
+}
+ function DisplayDateTime() {
+                        var DateTime = new Date();
+                        var strYear= DateTime.getYear()+1900;
+                        var strMonth= DateTime.getMonth()+1;
+                        var strDay = DateTime.getDate();
+                        var tagDiv=document.getElementById("DivTag");
+                        tagDiv.innerText ="for"+"    "+ strDay + "/" + strMonth + "/" + strYear;
+                  }
+</script>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+   <div class="col-md-2">
+<div class="wrapper">
+    <div class="sidebar">
+        <center><h3>Hello Stark</h3></center>
+        <center><h2><button type="button" class="btn btn-primary">Create Your Meal+</button></center></h2>
+        <ul>
+            <center><h3>Menu</h3></center>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Meals</a></li>
+            <li><a href="#">User Account</a></li>
+            <li><a href="#">Order History</a></li>
+            <li><a href="#">Calendar</a></li>
+            <center><h3>Community</h3></center>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">User Recipies</a></li>
+            <li><a href="#"></i>Logout</a></li>
+        </ul> 
+    </div>
+  </div>
+</div>
+<nav class="navbar-form">
+<div class="container">
+  <div class="row">
+   <div class="col-md-8">
+    <form class="navbar-form" style="margin-left: 100px;" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="q" style="width: 650px" style="text-align: center">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<div id="Cart" onclick="DisplayDateTime();">
+    <div id="text">
+    <h1>Create your  meal plan</h1>
+    <h4 ><Div id="DivTag"></div></h4>
+      <h5>Selected Items:</h5>
+    </Div>        
+ <div id="CartItems" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+ </div>   
+<div id="price" value="0"></div>
+<button class="button">Save meals and pay</button>
+</div>
+<div id="ItemContainer">
+
+<div class="info" id="Item1" draggable="true" ondragstart="drag(event)" value="50"><br> 
+      <img src="image.jfif" alt="Smiley face" width="42" height="42">
+      <p><b>Chinese Cheese Dumplings</b>&nbsp;&nbsp;&nbsp;&nbsp;  Rs.50<br>
+560 K/Cal per portion
+</p>
+</div>
+<div class="info" id="Item2" draggable="true" ondragstart="drag(event)" value="100"><br> 
+      <img src="image2.jfif" alt="Smiley face" width="42" height="42">
+      <p><b>Pizza</b>&nbsp;&nbsp;&nbsp;&nbsp;  Rs.350<br>
+450 K/Cal per portion
+</p>
+</div>
+<div class="info" id="Item2" draggable="true" ondragstart="drag(event)" value="100"><br> 
+      <img src="image1.jfif" alt="Smiley face" width="42" height="42">
+      <p><b>Veg Burger</b>&nbsp;&nbsp;&nbsp;&nbsp;  Rs.150<br>
+300 K/Cal per portion
+</p>
+</div>
+<div class="info" id="Item2" draggable="true" ondragstart="drag(event)" value="100"><br> 
+      <img src="image3.jfif" alt="Smiley face" width="42" height="42">
+      <p><b>Noodles</b>&nbsp;&nbsp;&nbsp;&nbsp;  Rs.80<br>
+200 K/Cal per portion
+</p>
+</div>
+
+
+</div>
+</div>
+</body>
+</html>
